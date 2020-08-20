@@ -1,2 +1,0 @@
-class TacticalPackagesController < ApplicationController
-end
