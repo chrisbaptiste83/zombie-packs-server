@@ -1,14 +1,14 @@
   class SessionsController < ApplicationController
 
     def login 
-      user = User.find_by(email: params[:email].capitalize) || User.find_by(email: params[:email])
-      if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
+      @user = User.find_by(email: params[:email].capitalize) || User.find_by(email: params[:email])
+      if @user && @user.authenticate(params[:password])
+        session[:user_id] = @user.id
         render json: {
           status: 200,
-          user: UserSerializer.new(user)
+          user: UserSerializer.new(@user)
         }
-      elsif user 
+      elsif @user 
         render json: {
           status: 500,
           passwordError: ["*Wrong Password!"],
@@ -36,11 +36,11 @@
     end
   
     def destroy 
-      user = User.find(session[:user_id])
-      if user && session.clear
+      @user = User.find(session[:user_id])
+      if @user && session.clear
         render json: {
           status: 200,
-          user: user
+          user: @user
         }
       end
     end

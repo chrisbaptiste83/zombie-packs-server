@@ -4,8 +4,8 @@ class TacticalPackagesController < ApplicationController
 
   # GET /tactical_packages
   def index
-    tactical_packages = TacticalPackage.all
-    render json: TacticalPackageSerializer.new(tactical_packages)
+    @tactical_packages = TacticalPackage.all
+    render json: TacticalPackageSerializer.new(@tactical_packages)
   end
 
   # GET /tactical_packages/1
@@ -15,12 +15,12 @@ class TacticalPackagesController < ApplicationController
 
   # POST /tactical_packages
   def create
-    tactical_package = TacticalPackage.new(tactical_package_params)
+    @tactical_package = TacticalPackage.new(tactical_package_params)
 
     if tactical_package.save
-      render json: TacticalPackageSerializer.new(tactical_package), status: :created, location: tactical_package
+      render json: TacticalPackageSerializer.new(@tactical_package), status: :created, location: @tactical_package
     else
-      render json: tactical_package.errors, status: :unprocessable_entity
+      render json: @tactical_package.errors, status: :unprocessable_entity
     end
   end
 
@@ -29,13 +29,13 @@ class TacticalPackagesController < ApplicationController
     if @tactical_package.update(tactical_package_params)
       render json: TacticalPackageSerializer.new(@tactical_package)
     else
-      render json: tactical_package.errors, status: :unprocessable_entity
+      render json: @tactical_package.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /tactical_packages/1
   def destroy
-    tactical_package.destroy
+    @tactical_package.destroy
   end
 
   private
