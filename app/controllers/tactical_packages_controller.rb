@@ -1,6 +1,6 @@
 class TacticalPackagesController < ApplicationController 
 
-    before_action :set_tactical_package, only: [:show, :update, :destroy]
+  before_action :set_tactical_package, only: [:show, :update, :destroy]
 
   # GET /tactical_packages
   def index

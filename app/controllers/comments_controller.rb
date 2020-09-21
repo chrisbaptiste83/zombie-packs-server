@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController 
+
     before_action :set_comment, only: [:show, :update, :destroy]
 
     def index
@@ -32,7 +33,8 @@ class CommentsController < ApplicationController
       @comment.destroy
     end
   
-    private
+    private 
+
       def set_comment
         @comment = Comment.find(params[:id])
       end
@@ -40,5 +42,6 @@ class CommentsController < ApplicationController
       
       def comment_params
         params.require(:comment).permit(:user_id, :tactical_package_id, :content)
-      end
+      end 
+      
 end
