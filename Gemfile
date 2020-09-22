@@ -17,7 +17,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem "aws-sdk-s3", require: false
 gem 'dotenv-rails', groups: [:development, :test]
-# Use Active Storage variant
+gem 'activestorage'
 # gem 'image_processing', '~> 1.2'
 gem 'fast_jsonapi', '~> 1.5'
 # Reduces boot times through caching; required in config/boot.rb
