@@ -24,7 +24,8 @@ class UsersController < ApplicationController
         render json: {
           status: 409,
           passwordError: user.errors.messages[:password],
-          password_confirmation_error: user.errors.messages[:password],
+          password_confirmation_error: user.errors.messages[:password], 
+          email_error: user.errors.messages[:email],
           username_error: user.errors.messages[:username]
         }
       end
