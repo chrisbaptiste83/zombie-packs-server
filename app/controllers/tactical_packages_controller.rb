@@ -10,15 +10,14 @@ class TacticalPackagesController < ApplicationController
 
   # GET /tactical_packages/1
   def show
-    render json: TacticalPackageSerializer.new(@tactical_package)
+    render json: @tactical_package
   end
 
   # POST /tactical_packages
-  def create
-    @tactical_package = TacticalPackage.new(tactical_package_params)
-
-    if tactical_package.save
-      render json: TacticalPackageSerializer.new(@tactical_package), status: :created, location: @tactical_package
+  def create  
+    @tactical_package = TacticalPackage.new(tactical_package_params) 
+    if @tactical_package.save 
+      render json: TacticalPackageSerializer.new(@tactical_package)
     else
       render json: @tactical_package.errors, status: :unprocessable_entity
     end
@@ -46,6 +45,6 @@ class TacticalPackagesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tactical_package_params
-      params.require(:tactical_package).permit(:user_id, :title, :description, :creator, :primary_weapon_name, :primary_weapon_image_url, :secondary_weapon_name, :secondary_weapon_image_url, :lethal_weapon_name, :lethal_weapon_image_url, :tactical_item_name, :tactical_item_image_url)
+      params.require(:tactical_package).permit(:user_id, :title, :description, :creator, :primary_weapon_name, :secondary_weapon_name, :lethal_weapon_name, :tactical_item_name, :image)
     end
 end
