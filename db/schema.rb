@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_22_083014) do
+ActiveRecord::Schema.define(version: 2020_12_11_025317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,16 +50,13 @@ ActiveRecord::Schema.define(version: 2020_09_22_083014) do
     t.string "creator"
     t.text "description"
     t.string "primary_weapon_name"
-    t.string "primary_weapon_image_url"
     t.string "secondary_weapon_name"
-    t.string "secondary_weapon_image_url"
     t.string "lethal_weapon_name"
-    t.string "lethal_weapon_image_url"
     t.string "tactical_item_name"
-    t.string "tactical_item_image_url"
     t.integer "comments_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,7 +65,6 @@ ActiveRecord::Schema.define(version: 2020_09_22_083014) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "image"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
