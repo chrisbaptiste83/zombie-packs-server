@@ -1,15 +1,16 @@
 class TacticalPackagesController < ApplicationController 
+  
 
   before_action :set_tactical_package, only: [:show, :update, :destroy]
 
   # GET /tactical_packages
   def index
-    @tactical_packages = TacticalPackage.all
-    render json: TacticalPackageSerializer.new(@tactical_packages)
+    @tactical_packages = TacticalPackage.with_attached_avatar
+    render json: @tactical_packages
   end
 
   # GET /tactical_packages/1
-  def show
+  def show 
     render json: @tactical_package
   end
 
@@ -40,11 +41,11 @@ class TacticalPackagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tactical_package
-      @tactical_package = TacticalPackage.find(params[:id])
+      @tactical_package = TacticalPackage.find(params[:id]) 
     end
 
     # Only allow a trusted parameter "white list" through.
     def tactical_package_params
-      params.require(:tactical_package).permit(:user_id, :title, :description, :creator, :primary_weapon_name, :secondary_weapon_name, :lethal_weapon_name, :tactical_item_name, :image)
+      params.require(:tactical_package).permit(:user_id, :title, :description, :creator, :primary_weapon_name, :secondary_weapon_name, :lethal_weapon_name, :tactical_item_name, :avatar)
     end
 end
